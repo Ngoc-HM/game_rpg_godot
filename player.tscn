@@ -1,10 +1,13 @@
-[gd_scene load_steps=87 format=3 uid="uid://bu3078fr5wka8"]
+[gd_scene load_steps=88 format=3 uid="uid://bu3078fr5wka8"]
 
 [ext_resource type="Texture2D" uid="uid://chnvbtfdkpnms" path="res://Assets/characters/Base Character - Free/PNG/Sword_Attack/Sword_attack_full.png" id="1_edjr2"]
 [ext_resource type="Script" path="res://player.gd" id="1_nhevj"]
 [ext_resource type="Texture2D" uid="uid://b8401jwcuy30l" path="res://Assets/characters/Base Character - Free/PNG/Unarmed_Idle/Unarmed_Idle_full.png" id="2_hwvk7"]
 [ext_resource type="Texture2D" uid="uid://cmyqjq0oyne1u" path="res://Assets/characters/Base Character - Free/PNG/Unarmed_Run/Unarmed_Run_full.png" id="3_nee0c"]
 [ext_resource type="Texture2D" uid="uid://fsjbdud5n7vl" path="res://Assets/characters/Base Character - Free/PNG/Unarmed_Death/Unarmed_Death_full.png" id="4_7wec3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1b2ey"]
+radius = 4.24264
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_knu0f"]
 atlas = ExtResource("1_edjr2")
@@ -624,9 +627,13 @@ texture_filter = 1
 script = ExtResource("1_nhevj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -4)
+shape = SubResource("CircleShape2D_1b2ey")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, 0)
+position = Vector2(1, 3)
+scale = Vector2(1, 0.984375)
 sprite_frames = SubResource("SpriteFrames_hk238")
 animation = &"side_idle"
 frame_progress = 0.993225
+offset = Vector2(0, -15)
