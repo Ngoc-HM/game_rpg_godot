@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cmyqjq0oyne1u" path="res://Assets/characters/Base Character - Free/PNG/Unarmed_Run/Unarmed_Run_full.png" id="3_nee0c"]
 [ext_resource type="Texture2D" uid="uid://fsjbdud5n7vl" path="res://Assets/characters/Base Character - Free/PNG/Unarmed_Death/Unarmed_Death_full.png" id="4_7wec3"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1b2ey"]
-radius = 4.24264
+[sub_resource type="CircleShape2D" id="CircleShape2D_uswsw"]
+radius = 22.0227
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_knu0f"]
 atlas = ExtResource("1_edjr2")
@@ -624,11 +624,12 @@ animations = [{
 
 [node name="player" type="CharacterBody2D"]
 texture_filter = 1
+collision_layer = 3
 script = ExtResource("1_nhevj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -4)
-shape = SubResource("CircleShape2D_1b2ey")
+shape = SubResource("CircleShape2D_uswsw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 3)
