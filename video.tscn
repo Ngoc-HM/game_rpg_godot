@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://big17vpmgh5sa"]
+
+[ext_resource type="Script" path="res://node_2d.gd" id="1_8bhwk"]
+[ext_resource type="VideoStream" path="res://Assets/Thm-tiu--ezgif.com-resize-video.ogv" id="2_83q3v"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(614, 317)
+script = ExtResource("1_8bhwk")
+metadata/_edit_horizontal_guides_ = [-140.0]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -611.0
+offset_top = -317.0
+offset_right = 413.0
+offset_bottom = 291.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+stream = ExtResource("2_83q3v")
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

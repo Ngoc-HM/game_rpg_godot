@@ -1,0 +1,177 @@
+[gd_scene load_steps=11 format=3 uid="uid://clr36wsgjj8l"]
+
+[ext_resource type="Texture2D" uid="uid://col5wd7w18yi" path="res://Assets/close-up-pixel-art-style-picture-man-with-sword-generative-ai_958138-56726.png" id="1_bup02"]
+[ext_resource type="FontFile" uid="uid://dvgb8dhhj3g41" path="res://Assets/Coconut_Font_1_0/Coconut.otf" id="1_cs638"]
+[ext_resource type="Script" path="res://main_manu.gd" id="1_dstwn"]
+[ext_resource type="FontFile" uid="uid://0m7efryjfvy8" path="res://Assets/Coconut_Font_1_0/Coconut.woff2" id="3_81m5l"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_14h2g"]
+texture = ExtResource("1_bup02")
+modulate_color = Color(0.485703, 0.485704, 0.485703, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwakf"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyqew"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h76gx"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fxsw"]
+bg_color = Color(0.828657, 0.908869, 0.965167, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_size = 5
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w70vg"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[node name="MainManu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dstwn")
+
+[node name="Panel" type="Panel" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_14h2g")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -62.0
+offset_right = 173.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 30
+theme_override_fonts/font = ExtResource("1_cs638")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_wwakf")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_jyqew")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_h76gx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7fxsw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w70vg")
+text = "GAME"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 30
+theme_override_fonts/font = ExtResource("1_cs638")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_wwakf")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_jyqew")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_h76gx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7fxsw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w70vg")
+text = "SETTING"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 30
+theme_override_fonts/font = ExtResource("1_cs638")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxFlat_wwakf")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_jyqew")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_h76gx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7fxsw")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w70vg")
+text = "EXIT"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -454.0
+offset_top = 94.0
+offset_right = 473.0
+offset_bottom = 238.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_81m5l")
+theme_override_font_sizes/font_size = 61
+text = "Meomeo Adventure"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]
