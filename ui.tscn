@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dr5asw1imeou6"]
+
+[ext_resource type="FontFile" uid="uid://dvgb8dhhj3g41" path="res://Assets/Coconut_Font_1_0/Coconut.otf" id="1_o55b0"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 13.0
+offset_top = 10.0
+offset_right = 64.0
+offset_bottom = 30.0
+theme_override_fonts/font = ExtResource("1_o55b0")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 79.0
+offset_top = -638.0
+offset_right = 152.0
+offset_bottom = -613.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_o55b0")
+text = "1"
