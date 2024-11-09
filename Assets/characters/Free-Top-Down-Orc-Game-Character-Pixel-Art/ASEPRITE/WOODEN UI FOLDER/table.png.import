@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dr8gv7snnmtdf"
-path="res://.godot/imported/ table.png-edb8383e4d545b22ec1a9108f1c67c06.ctex"
+path="res://.godot/imported/table.png-fc99b20bf001065e5f089cf087cd8d65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/characters/Free-Top-Down-Orc-Game-Character-Pixel-Art/ASEPRITE/WOODEN UI FOLDER/ table.png"
-dest_files=["res://.godot/imported/ table.png-edb8383e4d545b22ec1a9108f1c67c06.ctex"]
+source_file="res://Assets/characters/Free-Top-Down-Orc-Game-Character-Pixel-Art/ASEPRITE/WOODEN UI FOLDER/table.png"
+dest_files=["res://.godot/imported/table.png-fc99b20bf001065e5f089cf087cd8d65.ctex"]
 
 [params]
 

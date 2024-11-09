@@ -358,7 +358,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"back_attack",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -638,8 +638,8 @@ shape = SubResource("CircleShape2D_uswsw")
 position = Vector2(1, 3)
 scale = Vector2(1, 0.984375)
 sprite_frames = SubResource("SpriteFrames_hk238")
-animation = &"back_attack"
-frame_progress = 0.609503
+animation = &"side_idle"
+frame_progress = 0.993225
 offset = Vector2(0, -15)
 
 [node name="player_hitbox" type="Area2D" parent="."]
@@ -649,9 +649,6 @@ position = Vector2(2, -9)
 shape = SubResource("CircleShape2D_n6b6k")
 
 [node name="AttackCooldownTimer" type="Timer" parent="."]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.15, 0.15)
 
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
