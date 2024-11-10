@@ -167,11 +167,12 @@ tile_map_data = PackedByteArray("AAAUAAgAAgAKAAcAAAAEAAAAAgAKAAcAAAACAAoAAgAAAAE
 tile_set = SubResource("TileSet_uu1el")
 
 [node name="enemy" parent="TileMapLayer" instance=ExtResource("5_2ukem")]
-position = Vector2(809.5, 371)
+position = Vector2(90, 173)
 scale = Vector2(4, 4)
 
-[node name="player" parent="TileMapLayer/enemy" instance=ExtResource("4_apyyo")]
-position = Vector2(-131.875, -17.5)
+[node name="player" parent="TileMapLayer" instance=ExtResource("4_apyyo")]
+position = Vector2(515.5, 314)
+scale = Vector2(4, 4)
 
 [node name="UI" parent="TileMapLayer" instance=ExtResource("6_1rpif")]
 
