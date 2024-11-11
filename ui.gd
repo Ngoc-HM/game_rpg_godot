@@ -1,11 +1,12 @@
 extends CanvasLayer
 
+@export var player: Player
+@export var health_bar: ProgressBar
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	get_window().content_scale_factor = 1.0 # Replace with function body.
+func _ready():
+	if player:
+		player.healthChanged.connect(update_health_bar)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func update_health_bar(current_health, max_health):
+	if health_bar:
+		health_bar.value = (current_health / max_health) * 100

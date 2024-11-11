@@ -1,24 +1,29 @@
 extends CharacterBody2D
 
+class_name Player
+signal healthChanged(current_health, max_health)
+
+
 const speed = 1000
 var current_dir = "none"
 var enemy_in_range_toattack = false
 var enemy_attack_cooldown = true
-var health = 100
-var max_health = 100
+@onready var health: int = max_health
+@export var max_health = 50
 var player_isalive = true
 var is_attacking = false  # Thêm biến để kiểm soát trạng thái tấn công
+@export var health_fruit = 0
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
 	get_window().content_scale_factor = 1.0
 	$AttackCooldownTimer.connect("timeout", Callable(self, "_on_attack_cooldown_timeout"))
 	$AnimatedSprite2D.connect("animation_finished", Callable(self, "_on_attack_animation_finished"))
+	
 
 func _physics_process(delta):
 	player_movement(delta)
 	enemy_attack()
-	
 	# Kiểm tra phím T để tấn công
 	if Input.is_action_just_pressed("ui_attack") and not is_attacking:
 		is_attacking = true
@@ -84,22 +89,24 @@ func play_anim(movement):
 			anim.play("back_walk")
 		elif movement == 0:
 			anim.play("back_idle")
-
-func enemy_attack():
-	if enemy_in_range_toattack and enemy_attack_cooldown:
-		print("Enemy hits player")
-		health -= 10  # Damage amount
-		if health <= 0:
+			
+func take_damage(amount):
+	if health > 0:
+		health -= amount
+		if health < 0:
 			health = 0
-			player_isalive = false
-			_on_player_death()  # Handle player death logic
-		print("Player health: ", health)
+		healthChanged.emit(health, max_health)
+	
+func enemy_attack():
+	if enemy_in_range_toattack and enemy_attack_cooldown and player_isalive:
+		take_damage(10)
 		enemy_attack_cooldown = false
-		$AttackCooldownTimer.start()  # Start cooldown timer for enemy's attack
+		$AttackCooldownTimer.start()
 
 # Reset trạng thái tấn công sau khi cooldown hoàn thành
 func _on_attack_cooldown_timeout():
 	is_attacking = false
+	enemy_attack_cooldown = true
 
 # Hàm gọi khi hoạt ảnh tấn công kết thúc
 func _on_attack_animation_finished():
@@ -108,10 +115,12 @@ func _on_attack_animation_finished():
 		play_anim(0)  # Quay về trạng thái idle
 
 func _on_player_hitbox_body_entered(body):
+	print("Body entered:", body.name)
 	if body.has_method("enemy"):
 		enemy_in_range_toattack = true
 
 func _on_player_hitbox_body_exited(body):
+	print("Body exited:", body.name)
 	if body.has_method("enemy"):
 		enemy_in_range_toattack = false
 
