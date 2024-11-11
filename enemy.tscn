@@ -102,13 +102,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8n8v6"]
-radius = 56.898
+radius = 76.3019
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fjj48"]
-radius = 11.0
+radius = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cy747"]
-radius = 22.0
+radius = 39.0
 
 [node name="enemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -117,26 +117,29 @@ script = ExtResource("3_diww2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-8.5, 7)
 scale = Vector2(0.734375, 0.75)
 sprite_frames = SubResource("SpriteFrames_oshid")
+animation = &"attack"
 autoplay = "default"
+frame_progress = 0.416666
 
 [node name="detection_area" type="Area2D" parent="AnimatedSprite2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/detection_area"]
-position = Vector2(-0.68085, -2.66667)
+[node name="ra_khoi_la_dung" type="CollisionShape2D" parent="AnimatedSprite2D/detection_area"]
 shape = SubResource("CircleShape2D_8n8v6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-9, 6)
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="attack_player" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4, -2)
 shape = SubResource("CircleShape2D_fjj48")
 
 [node name="enemy_hitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
-position = Vector2(-9, 4)
+[node name="player_detection" type="CollisionShape2D" parent="enemy_hitbox"]
 shape = SubResource("CircleShape2D_cy747")
 
 [connection signal="body_entered" from="AnimatedSprite2D/detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="AnimatedSprite2D/detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

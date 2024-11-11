@@ -1,13 +1,15 @@
 extends CharacterBody2D
 
-const speed = 1000
+const SPEED = 200
 var current_dir = "none"
 var enemy_in_range_toattack = false
 var enemy_attack_cooldown = true
 var health = 100
 var max_health = 100
 var player_isalive = true
-var is_attacking = false  # Thêm biến để kiểm soát trạng thái tấn công
+var is_attacking = false
+var attack_damage = 20  # Sát thương của player
+var enemy = null  # Biến tham chiếu đến enemy
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
@@ -17,13 +19,15 @@ func _ready():
 
 func _physics_process(delta):
 	player_movement(delta)
-	enemy_attack()
-	
+	if is_attacking:
+		enemy_attack()
+
 	# Kiểm tra phím T để tấn công
 	if Input.is_action_just_pressed("ui_attack") and not is_attacking:
 		is_attacking = true
 		$AnimatedSprite2D.play("back_attack")
 		$AttackCooldownTimer.start()  # Bắt đầu bộ đếm thời gian cooldown
+		enemy_attack()
 
 func player_movement(delta):
 	if is_attacking:  # Khi đang tấn công, không cho phép di chuyển
@@ -32,22 +36,22 @@ func player_movement(delta):
 	if Input.is_action_pressed("ui_right"):
 		current_dir = "right"
 		play_anim(1)
-		velocity.x = speed
+		velocity.x = SPEED
 		velocity.y = 0
 	elif Input.is_action_pressed("ui_left"):
 		current_dir = "left"
 		play_anim(1)
-		velocity.x = -speed
+		velocity.x = -SPEED
 		velocity.y = 0
 	elif Input.is_action_pressed("ui_down"):
 		current_dir = "down"
 		play_anim(1)
-		velocity.y = speed
+		velocity.y = SPEED
 		velocity.x = 0
 	elif Input.is_action_pressed("ui_up"):
 		current_dir = "up"
 		play_anim(1)
-		velocity.y = -speed
+		velocity.y = -SPEED
 		velocity.x = 0
 	else:
 		play_anim(0)
@@ -57,7 +61,7 @@ func player_movement(delta):
 	move_and_slide()
 
 func play_anim(movement):
-	var dir = current_dir 
+	var dir = current_dir
 	var anim = $AnimatedSprite2D
 	
 	if dir == "right":
@@ -86,16 +90,17 @@ func play_anim(movement):
 			anim.play("back_idle")
 
 func enemy_attack():
-	if enemy_in_range_toattack and enemy_attack_cooldown:
-		print("Enemy hits player")
-		health -= 10  # Damage amount
-		if health <= 0:
-			health = 0
-			player_isalive = false
-			_on_player_death()  # Handle player death logic
+	if enemy_in_range_toattack and enemy_attack_cooldown and enemy != null:
+		print("Player hits enemy")
+		enemy.health -= attack_damage  # Gây sát thương cho enemy
+		if enemy.health <= 0:
+			enemy.health = 0
+			print("Enemy is dead")  # Enemy đã chết
+		print("Enemy health: ", enemy.health)
 		print("Player health: ", health)
+		
 		enemy_attack_cooldown = false
-		$AttackCooldownTimer.start()  # Start cooldown timer for enemy's attack
+		$AttackCooldownTimer.start()  # Bắt đầu cooldown cho tấn công
 
 # Reset trạng thái tấn công sau khi cooldown hoàn thành
 func _on_attack_cooldown_timeout():
@@ -108,15 +113,16 @@ func _on_attack_animation_finished():
 		play_anim(0)  # Quay về trạng thái idle
 
 func _on_player_hitbox_body_entered(body):
-	if body.has_method("enemy"):
+	if body.is_in_group("Enemy"):
 		enemy_in_range_toattack = true
+		enemy = body  # Gán tham chiếu đến enemy
 
 func _on_player_hitbox_body_exited(body):
-	if body.has_method("enemy"):
+	if body.is_in_group("Enemy"):
 		enemy_in_range_toattack = false
+		enemy = null  # Xóa tham chiếu đến enemy khi ra khỏi phạm vi
 
 # Handle player death
 func _on_player_death():
 	print("Player is dead")
 	$AnimatedSprite2D.play("front_death")  # Play death animation
-	# Any additional death handling like stopping player movement
