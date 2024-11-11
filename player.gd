@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const speed = 100
+const speed = 1000
 var current_dir = "none"
 var enemy_in_range_toattack = false
 var enemy_attack_cooldown = true
@@ -11,7 +11,7 @@ var is_attacking = false  # Thêm biến để kiểm soát trạng thái tấn 
 
 func _ready():
 	$AnimatedSprite2D.play("front_idle")
-	get_window().content_scale_factor = 4.0
+	get_window().content_scale_factor = 1.0
 	$AttackCooldownTimer.connect("timeout", Callable(self, "_on_attack_cooldown_timeout"))
 	$AnimatedSprite2D.connect("animation_finished", Callable(self, "_on_attack_animation_finished"))
 
@@ -85,20 +85,17 @@ func play_anim(movement):
 		elif movement == 0:
 			anim.play("back_idle")
 
-func _on_player_hitbox_body_entered(body):
-	if body.has_method("enemy"):
-		enemy_in_range_toattack = true
-
-func player():
-	pass
-
-func _on_player_hitbox_body_exited(body):
-	if body.has_method("enemy"):
-		enemy_in_range_toattack = false
-
 func enemy_attack():
-	if enemy_in_range_toattack:
-		push_error("player - 10 health")
+	if enemy_in_range_toattack and enemy_attack_cooldown:
+		print("Enemy hits player")
+		health -= 10  # Damage amount
+		if health <= 0:
+			health = 0
+			player_isalive = false
+			_on_player_death()  # Handle player death logic
+		print("Player health: ", health)
+		enemy_attack_cooldown = false
+		$AttackCooldownTimer.start()  # Start cooldown timer for enemy's attack
 
 # Reset trạng thái tấn công sau khi cooldown hoàn thành
 func _on_attack_cooldown_timeout():
@@ -109,3 +106,17 @@ func _on_attack_animation_finished():
 	if is_attacking and $AnimatedSprite2D.animation == "back_attack":
 		is_attacking = false
 		play_anim(0)  # Quay về trạng thái idle
+
+func _on_player_hitbox_body_entered(body):
+	if body.has_method("enemy"):
+		enemy_in_range_toattack = true
+
+func _on_player_hitbox_body_exited(body):
+	if body.has_method("enemy"):
+		enemy_in_range_toattack = false
+
+# Handle player death
+func _on_player_death():
+	print("Player is dead")
+	$AnimatedSprite2D.play("front_death")  # Play death animation
+	# Any additional death handling like stopping player movement

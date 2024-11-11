@@ -142,6 +142,7 @@ scale = Vector2(2, 2)
 script = SubResource("GDScript_v1p2b")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(4, 4)
 
 [node name="ground" type="TileMapLayer" parent="TileMapLayer"]
 use_parent_material = true
@@ -167,7 +168,7 @@ tile_map_data = PackedByteArray("AAAUAAgAAgAKAAcAAAAEAAAAAgAKAAcAAAACAAoAAgAAAAE
 tile_set = SubResource("TileSet_uu1el")
 
 [node name="enemy" parent="TileMapLayer" instance=ExtResource("5_2ukem")]
-position = Vector2(90, 173)
+position = Vector2(1112.75, 415.125)
 scale = Vector2(4, 4)
 
 [node name="player" parent="TileMapLayer" instance=ExtResource("4_apyyo")]

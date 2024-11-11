@@ -1,5 +1,5 @@
 extends CharacterBody2D
-var speed = 50
+var speed = 40
 var player_chase = false
 var player = null
 func _physics_process(delta):
@@ -13,3 +13,5 @@ func _on_detection_area_body_entered(body):
 func _on_detection_area_body_exited(body):
 	player = null
 	player_chase = false 
+func enemy():
+	pass

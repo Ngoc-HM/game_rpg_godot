@@ -655,3 +655,4 @@ zoom = Vector2(0.15, 0.15)
 
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="child_entered_tree" from="player_hitbox/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]
